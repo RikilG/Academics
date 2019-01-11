@@ -1,0 +1,6 @@
+*.out
+*.app
+*.exe
+*.o
+*.d
+*.obj
