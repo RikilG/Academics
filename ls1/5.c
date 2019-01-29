@@ -58,6 +58,10 @@ void swap(Node *head, int x) {
 		if(head->data == x) {
 			//swap and return from func
 			int temp = head->data;
+			if(head->next == NULL) {
+				printf("cannot swap last value!!\n");
+				return;
+			}
 			head->data = head->next->data;
 			head->next->data = temp;
 			return;

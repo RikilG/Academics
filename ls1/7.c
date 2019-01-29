@@ -13,9 +13,7 @@ int main() {
 	scanf(" %d",&opt);
 	char str[100];
 	fflush(stdin);
-	//printf("Hello");
 	scanf(" %[^\n]",str);
-	//printf("hello2");
 	strcat(str," ");
 	int len = strlen(str),ind = 0;
 	if(opt == 1){
@@ -27,7 +25,6 @@ int main() {
 				}
 			}
 		}
-		//printf(" converted : %s\n",str);
 		int start=0,end=0;
 		while(end<len){
 			while(str[end+1]!=' '){
