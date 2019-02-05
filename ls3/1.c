@@ -4,6 +4,7 @@
 int n;
 
 int cmpstr(char *str, char *p, int striked[]) {
+	/*
 	int j=0,flag = 0;
 	for(int i=0;i<strlen(p);i++) {
 		for(;j<strlen(str);j++) {
@@ -17,6 +18,17 @@ int cmpstr(char *str, char *p, int striked[]) {
 		}
 	}
 	return !flag;
+	*/
+	int count = 0;
+	for(int i=0;i<strlen(str);i++) {
+		if(str[i] == p[count] && striked[i]!=1) {
+			count++;
+		}
+	}
+	if(count == strlen(p)) {
+		return 1;
+	}
+	return 0;
 }
 
 int main() {
