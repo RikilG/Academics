@@ -5,7 +5,7 @@
 int main() {
 
     int x,p,a,m,cost=0; // x-xbox p-ps4 a-any m-maxProducts
-    scanf(" %d %d %d %d",&x,&p,&a,&m);
+    scanf(" %d %d %d %d",&p,&x,&a,&m);
     int price[m];
     char item[m];
     for(int i=0;i<m;i++) {
@@ -46,6 +46,7 @@ int main() {
             }
         }
     }
+    printf(" cost:%d\n",cost);
 
     return 0;
 }

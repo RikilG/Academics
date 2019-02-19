@@ -13,6 +13,8 @@ int binsearch(int start, int find, int n, int arr[]) {
         if(arr[i] > find) {
             i--;
             //printf(" returning : %d\n",i);
+            if(arr[start] == arr[i])
+                return -1;
             return i;
         }
     }
@@ -28,6 +30,9 @@ int main() {
         scanf(" %d",&arr[i]);
     }
     qsort(arr,n,sizeof(int),cmp);
+    for(int i=0;i<n;i++) {
+        printf(" %d",arr[i]);
+    }printf("\n");
     for(int i=0;i<n;i++) {
         int j = binsearch(i,2*arr[i],n,arr);
         if(j!=-1) {
