@@ -1,3 +1,4 @@
+// not the asked program. this one only checks for one swap.
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>

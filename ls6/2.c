@@ -19,16 +19,13 @@ void swap(int n, int m, int row, int arr[][m], int ele, int col) {
                 int temp = col;
                 col = i;
                 ele = temp;
+                break;
             }
-            else
+            else {
                 ele = i;
+                break;
+            }
         }
-    }
-    printf("before:\n");
-    for(int i=0;i<n;i++) {
-        for(int j=0;j<m;j++) {
-            printf(" %d",arr[i][j]);
-        }printf("\n");
     }
     printf("swap: %d %d\n", col, ele);
     for(int i=0;i<n;i++) {
@@ -40,31 +37,21 @@ void swap(int n, int m, int row, int arr[][m], int ele, int col) {
             }
         }
     }
-    printf("after:\n");
-    for(int i=0;i<n;i++) {
-        for(int j=0;j<m;j++) {
-            printf(" %d",arr[i][j]);
-        }printf("\n");
-    }printf("\n");
 }
 
-int main()
-{
-
+int main() {
     int n,m,count=0;
     scanf(" %d %d %d",&n,&m,&k);
     int arr[n][m];
-    for(int i=0;i<n;i++) {
-        for(int j=0;j<m;j++) {
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m;j++)
             scanf(" %d",&arr[i][j]);
-        }
-    }
     for(int i=0;i<n;i++) {
         int temp[m];
         for(int j=0;j<m;j++) temp[j] = arr[i][j];
         qsort(temp, m, sizeof(int), cmp);
-        for(int j=0;j<m;j++) printf(" %d",temp[j]);
-        printf("\n");
+        // for(int j=0;j<m;j++) printf(" %d",temp[j]);
+        // printf("\n");
         for(int j=0;j<m;j++) {
             if(temp[j] != arr[i][j]) {
                 swap(n,m,i,arr,temp[j],j);
@@ -73,6 +60,12 @@ int main()
         }
     }
     printf("count:%d\n",count);
-
     return 0;
 }
+
+    // printf("after:\n");
+    // for(int i=0;i<n;i++) {
+    //     for(int j=0;j<m;j++) {
+    //         printf(" %d",arr[i][j]);
+    //     }printf("\n");
+    // }printf("\n");
