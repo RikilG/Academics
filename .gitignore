@@ -7,3 +7,7 @@
 *.c~
 *.swp
 inputs.txt
+test.c
+temp.c
+temp*
+test*
