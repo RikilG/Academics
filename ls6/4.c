@@ -43,6 +43,10 @@ int main() {
                 swap(&arr[i][1],&arr[j][0]);
             else if(arr[i][0]==arr[j][1] && arr[j][0]!=arr[j][1])
                 swap(&arr[i][1],&arr[j][1]);
+            else if(arr[i][1]==arr[j][0] && arr[j][0]!=arr[j][1])
+                swap(&arr[i][0],&arr[j][0]);
+            else if(arr[i][1]==arr[j][1] && arr[j][0]!=arr[j][1])
+                swap(&arr[i][0],&arr[j][1]);
         }
     }
     init(n);

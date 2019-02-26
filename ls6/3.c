@@ -1,3 +1,4 @@
+// this does not consider consecutive cats. take note.
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
