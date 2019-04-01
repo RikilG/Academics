@@ -1,31 +1,33 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<string.h>
+#include<limits.h>
 
-int nextNum(int num) {
-    int divisors = 0, max;
-    for(int i=1;i*i<=num;i++) {
-        if(num%i==0){
-            int temp = num/i;
-            divisors++;
-            max = (i>temp)?i:temp;
+int ans[10000] = {0,1,2,3};
+
+int findAns(int i) {
+    if(ans[i])  return 0;
+    int min = INT_MAX;
+    for(int j=2;j*j<=i;j++) {
+        if(i%j==0) {
+            int temp = i/j;
+            if(ans[temp]<min) min = ans[temp];
         }
     }
-    if(divisors == 1)   return num-1;
-    return max;
+    if(min!=INT_MAX)
+        ans[i] = 1 + min;
+    else
+        ans[i] = 1 + ans[i-1];
 }
 
 int main() {
-    int n,num,moves;
-    scanf(" %d",&n);
-    while(n --> 0) {
-        moves = 0;
-        scanf(" %d",&num);
-        while(num>0) {
-            num = nextNum(num);
-            moves++;
+    int tc,n;
+    scanf(" %d",&tc);
+    while(tc--) {
+        scanf(" %d",&n);
+        for(int i=0;i<=n;i++) {
+            findAns(i);
         }
-        printf("Moves: %d\n",moves);
+        printf(" ans=%d\n",ans[n]);
     }
     return 0;
 }

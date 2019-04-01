@@ -2,18 +2,36 @@
 #include<stdlib.h>
 #include<string.h>
 
-int main() {
-    int n,m,k,count=0,sum = 0;
-    scanf(" %d %d %d",&n,&m,&k);
-    int stk1[n],stk2[m],tos1=0,tos2=0;
-    for(int i=0;i<n;i++)
-        scanf(" %d",&stk1[i]);
-    for(int i=0;i<m;i++)
-        scanf(" %d",&stk2[i]);
-    while(tos1<n && tos2<m && sum<k) {
-        sum += (stk1[tos1]<stk2[tos2])?stk1[tos1++]:stk2[tos2++];
-        count++;
+int n, m, k, count = 0, sum = 0, maxCount = 0;
+int stk[2][1000], tos[2] = {0};
+
+int selectELement(int no) {
+    sum += stk[no][ tos[no]++ ];
+    if(sum>k) {
+        if(count>maxCount) maxCount = count;
+        goto EXIT;
     }
-    printf("count: %d\n",--count);
+    else if((no==0 && tos[0]>n) || (no==1&&tos[1]>m))
+        goto EXIT;
+    count++;
+    printf("Selected from : %d, currSum: %d\n",no,sum);
+    selectELement(0);
+    selectELement(1);
+    count--;
+    printf("Deselected from : %d\n",no);
+    EXIT:
+        sum -= stk[no][ --tos[no] ];
+        return 0;
+}
+
+int main() {
+    scanf(" %d %d %d",&n,&m,&k);
+    for(int i=0;i<n;i++)
+        scanf(" %d",&stk[0][i]);
+    for(int i=0;i<m;i++)
+        scanf(" %d",&stk[1][i]);
+    selectELement(0);
+    selectELement(1);
+    printf("maxCount: %d\n",maxCount);
     return 0;
 }
