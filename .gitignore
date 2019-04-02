@@ -6,6 +6,7 @@
 *.obj
 *.c~
 *.swp
+.vscode
 inputs.txt
 test.c
 temp.c
