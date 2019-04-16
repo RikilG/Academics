@@ -1,3 +1,18 @@
+/*
+    use this logic:
+        if (k>=n) {
+            // k^2 >= k*n >= n^2 > nlogn
+            - find all possible combinations of both arrays = O(n^2)
+            - pick and print top k elements as ans
+        }
+        else {
+            // n^2 > k*n > (k^2 || klogn)
+            - for m a heap for both arrays = O(n)
+            - pick k elements from both heaps = O(klogn)
+            - find all possible combinations for taken 2*k elements = O(k^2)
+            - pick and print top k elements out of k^2 elements
+        }
+*/
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
