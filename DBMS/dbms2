@@ -1,0 +1,58 @@
+Department				   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DNUM					   NOT NULL NUMBER(38)
+ DNAME						    VARCHAR2(10)
+ WORK_PLACE					    VARCHAR2(10)
+
+Employee				   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENO					   NOT NULL NUMBER(38)
+ ENAME						    VARCHAR2(10)
+ JOB						    VARCHAR2(10)
+ MGR						    NUMBER(38)
+ HIREDATE					    DATE
+ SAL						    NUMBER(38)
+ COMM						    NUMBER(38)
+ DEPTNO 					    NUMBER(38)
+
+select deptno,count(eno),avg(sal) from employee group by deptno;
+select deptno,dname,count(deptno),avg(sal) from employee,department where deptno=dnum group by deptno,dname;
+select deptno,count(eno) from employee group by deptno having count(eno)>5;
+select deptno,dname,count(eno) from employee,department where deptno=dnum and sal>1500 group by deptno,dname;
+select deptno,dname,count(eno) from employee,department where deptno=dnum group by deptno,dname having count(eno)=0;
+select * from employee,department where deptno=dnum and sal>(select avg(sal) from employee);
+select dnum,dname from employee where dnum=deptno and avg(sal)>6000 group by dnum,dname having count(*) = (select count(*) from employee where sal>6000);
+select dnum,dname from employee,department where dnum=deptno and sal>6000 group by dnum, dname having count(*)=(select count(*) from employee where sal>6000);
+
+
+INSERT INTO STUDENT VALUES(1003,'JOGINDER',19,'MECH');
+INSERT INTO STUDENT VALUES(1006,'MANI',22,'CSE');
+INSERT INTO STUDENT VALUES(1021,'FAROOQ',21,'EEE');
+INSERT INTO STUDENT VALUES(1025,'GIRIJA',19,'MECH');
+INSERT INTO STUDENT VALUES(1032,'MURALI',22,'CSE');
+INSERT INTO STUDENT VALUES(1038,'RAJANISH',21,'MECH');
+INSERT INTO STUDENT VALUES(1056,'PRANEET',23,'EEE');
+INSERT INTO STUDENT VALUES(1059,'STEPHEN',19,'CSE');
+INSERT INTO STUDENT VALUES(1068,'LEELA',20,'CIVIL');
+
+INSERT INTO COURSE VALUES(10,'DBMS',3);
+INSERT INTO COURSE VALUES(20,'CRYPT',4);
+INSERT INTO COURSE VALUES(50,'ARCH',5);
+INSERT INTO COURSE VALUES(80,'MATHS',3);
+INSERT INTO COURSE VALUES(90,'CRYPTO',3);
+INSERT INTO COURSE VALUES(30,'CNW',4);
+
+INSERT INTO STUDENTCOURSE VALUES(1001,10,'A');
+INSERT INTO STUDENTCOURSE VALUES(1001,50,'A');
+INSERT INTO STUDENTCOURSE VALUES(1006,10,'A');
+INSERT INTO STUDENTCOURSE VALUES(1006,20,'B');
+INSERT INTO STUDENTCOURSE VALUES(1006,80,'A');
+INSERT INTO STUDENTCOURSE VALUES(1006,90,'D');
+INSERT INTO STUDENTCOURSE VALUES(1021,80,'A');
+INSERT INTO STUDENTCOURSE VALUES(1021,90,'D');
+INSERT INTO STUDENTCOURSE VALUES(1025,90,'B');
+INSERT INTO STUDENTCOURSE VALUES(1056,10,'B');
+INSERT INTO STUDENTCOURSE VALUES(1056,80,'A');
+INSERT INTO STUDENTCOURSE VALUES(1056,90,'D');
+INSERT INTO STUDENTCOURSE VALUES(1068,50,'A');
+INSERT INTO STUDENTCOURSE VALUES(1068,90,'B');

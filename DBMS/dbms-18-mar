@@ -1,0 +1,69 @@
+STUDENT
+STUDENTCOURSE
+COURSE
+
+Student
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SCODE					   NOT NULL NUMBER(38)
+ SNAME						    VARCHAR2(15)
+ SAGE						    NUMBER(38)
+ SBRANCH					    CHAR(5)
+
+Course
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID					   NOT NULL NUMBER(38)
+ CNAME						    CHAR(7)
+ CREDITS					    NUMBER(38)
+
+Studentcourse
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID					   NOT NULL NUMBER(38)
+ CNO					   NOT NULL NUMBER(38)
+ GRADE						    CHAR(1)
+
+
+1. select sname, scode from student where sname like '%I';
+2. select sbranch, count(*) from student group by sbranch;
+3. i)select scode, sname from student minus (select scode,sname from student, studentcourse where scode=sid);
+   ii)select scode, sname from student where scode not in (select sid from studentcourse);
+   iii)select scode, sname from student where not exists (select * from studentcourse where sid = scode);
+4. select sid, sname, count(*) from student, studentcourse where sid=scode group by sname, sid having count(*)>0;
+5. select sid, sname, cname, grade from student, studentcourse, course where sid=scode and cno=cid and cname='ARCH';
+6. select cid,cname from course where not exists (select cno from studentcourse where cid=cno);
+7. SELECT sname FROM student, studentcourse, course WHERE scode=sid and cid=cno and sbranch='MECH' and cname='CRYPTO';
+8. SELECT sname, sid, credits FROM student, studentcourse, course WHERE sid=scode and cid=cno and credits=3;
+9. SELECT sname, scode FROM student minus (SELECT sname, sid FROM student, studentcourse, course WHERE sid=scode and cid=cno and credits=4);
+
+
+PL/SQL commands
+
+TO PRINT NO OF EMPLOYEES IN TABLE
+  1  DECLARE
+  2  howmany INTEGER;
+  3  BEGIN
+  4  Select count(*) INTO howmany
+  5  from employee
+  6  where job = 'SALESMAN';
+  7  dbms_output.put_line(to_char(howmany)||'employees');
+  8  DBMS_OUTPUT.NEW_LINE;
+  9  dbms_output.put_line('GOODBYE');
+ 10  DBMS_OUTPUT.NEW_LINE;
+ 11  END;
+
+TO INSERT INTO TABLE
+  1 DECLARE
+  2 vid NUMBER(3);
+  2 vname varchar2(8);
+  2 vemps number(3);
+  2 BEGIN
+  2  --this is a comment
+  2 -- create hotel table first and try putting this in a loop
+  2 vid = &vid;
+  2 vname = '&vname';
+  2 vemps = &vemps;
+  2 insert into hotel (id,name,emps) values (vid,vname,vemps);
+  2 dbms_output.put_line('RECORD INSERTED');
+  2 END;

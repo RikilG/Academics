@@ -1,0 +1,48 @@
+select * from employee;
+
+select ename as aliasname from employee;
+select upper(ename) from employee;
+select lower(ename) from employee;
+select distinct deptno from employee;
+select substr(ename, 1, 3) from employee;
+select instr('JONES', 'O') from employee where ename='JONES';
+select ltrim(ename) from employee;
+select rtrim(ename) from employee;
+select replace(ename, 'O', '$') from employee;
+
+select * from employee where ename='JONES';
+select * from employee where ename='JONES' or ename='FORD';
+select * from employee where not(ename='JONES' or ename='FORD');
+select * from employee where ename like 'J%';
+select * from employee where ename like '%O%';
+select * from employee where ename like '%N';
+select * from employee where ename like '____N';
+select * from employee where ename like 'J____';
+select * from employee where sal > 3000;
+select * from employee where sal < 1000;
+select * from employee where sal between 500000 and 800000;
+select * form employee where ename='JONES' or ename='MICHEL';
+select eno, ename, 1.5*sal from employee;
+(i)select eno, ename, sal from employee,department where deptno=dnum and work_place='CHICAGO';
+(ii) select eno, ename, sal from employee,department where deptno=dnum and work_place in 'CHICAGO';
+select eno, ename from employee,department where deptno=dnum and (dname='RESEARCH' or dname='SALES');
+select avg(sal) from employee;
+select eno,ename,sal from employee where sal>(select avg(sal) from employee);
+
+
+ Employee				   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENO					   NOT NULL NUMBER(38)
+ ENAME						    VARCHAR2(10)
+ JOB						    VARCHAR2(10)
+ MGR						    NUMBER(38)
+ HIREDATE					    DATE
+ SAL						    NUMBER(38)
+ COMM						    NUMBER(38)
+ DEPTNO
+ 
+ Department				   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DNUM					   NOT NULL NUMBER(38)
+ DNAME						    VARCHAR2(10)
+ WORK_PLACE

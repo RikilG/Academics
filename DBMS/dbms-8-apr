@@ -1,0 +1,37 @@
+CREATE or REPLACE trigger t1 after INSERT on book
+begin
+	dbms_output.put_line('Trigger t1: inserted record INTO book TABLE');
+end;
+/
+//to test write insert INTO book values(12,'test',200,'me');
+--------------------------------------------------
+CREATE or REPLACE trigger t2 after INSERT on book
+declare
+	totalbooks number;
+begin
+	SELECT count(*) INTO totalbooks FROM book;
+	dbms_output.put_line('T2: after new entry total number of books is :'|| totalbooks);
+end;
+/
+--------------------------------------------------
+CREATE or REPLACE trigger t6 after update on book for each row
+begin
+	dbms_output.put_line('T5: Update to book record is over; printed by row level trigger');
+end;
+/
+--------------------------------------------------
+CREATE TABLE log(triggerNo varchar(10), description varchar(100));
+--------------------------------------------------
+CREATE or REPLACE trigger t2 after INSERT on book
+declare
+	totalbooks number;
+begin
+	SELECT count(*) INTO totalbooks FROM book;
+	INSERT INTO log values('T2','added new book!!');
+end;
+/
+--------------------------------------------------
+CREATE sequence bookID start with 103;
+insert INTO book values(bookID.nextval, 'test4', 500, 'me');
+--------------------------------------------------
+

@@ -1,0 +1,64 @@
+CREATE TABLE worker(workerId INT, fname VARCHAR(15), lname VARCHAR(15), salary INT, joinDate DATE, dept VARCHAR(10));
+CREATE TABLE bonus(workerRef INT, bonusDate DATE, bonusAmt INT);
+CREATE TABLE title(workerRef INT, workerTitle VARCHAR(15), affectFrom DATE);
+CREATE TABLE logger(trId VARCHAR(10), tableName VARCHAR(15), operation VARCHAR(30));
+----------------------------------------------------------------------------------------------------
+TO_DATE('10/15/2008 10:06:32 PM','MM/DD/YYYY HH:MI:SS AM')
+----------------------------------------------------------------------------------------------------
+CREATE or REPLACE TRIGGER tr1 AFTER INSERT or delete or update ON worker
+begin
+	if inserting then
+		INSERT INTO logger values('tr1', 'worker', 'insertion', TO_DATE(sysdate, 'dd/mm/yyyy hh:mi:ss am'));
+	end if;
+	if updating then
+		INSERT INTO logger values('tr1', 'worker', 'updating', TO_DATE(sysdate, 'dd/mm/yyyy hh:mi:ss am'));
+	end if;
+	if deleting then
+		INSERT INTO logger values('tr1', 'worker', 'deleting', TO_DATE(sysdate, 'dd/mm/yyyy hh:mi:ss am'));
+	end if;
+end;
+/
+----------------------------------------------------------------------------------------------------
+CREATE or REPLACE TRIGGER tr2 AFTER INSERT or delete or update ON bonus
+begin
+	if inserting then
+		INSERT INTO logger values('tr2', 'bonus', 'insertion', TO_DATE(sysdate, 'dd/mm/yyyy hh:mi:ss am'));
+	end if;
+	if updating then
+		INSERT INTO logger values('tr2', 'bonus', 'updating', TO_DATE(sysdate, 'dd/mm/yyyy hh:mi:ss am'));
+	end if;
+	if deleting then
+		INSERT INTO logger values('tr2', 'bonus', 'deleting', TO_DATE(sysdate, 'dd/mm/yyyy hh:mi:ss am'));
+	end if;
+end;
+/
+----------------------------------------------------------------------------------------------------
+CREATE or REPLACE TRIGGER tr3 AFTER INSERT or delete or update ON title begin
+	if inserting then
+		INSERT INTO logger values('tr3', 'title', 'insertion', TO_DATE(sysdate, 'dd/mm/yyyy hh:mi:ss am'));
+	end if;
+	if updating then
+		INSERT INTO logger values('tr3', 'title', 'updating', TO_DATE(sysdate, 'dd/mm/yyyy hh:mi:ss am'));
+	end if;
+	if deleting then
+		INSERT INTO logger values('tr3', 'title', 'deleting', TO_DATE(sysdate, 'dd/mm/yyyy hh:mi:ss am'));
+	end if;
+end;
+/
+----------------------------------------------------------------------------------------------------
+INSERT INTO worker values(001, 'Monika', 'Arora', 100000, TO_DATE('2014-02-20 09:00:00', 'YYYY-MM-DD HH:MI:SS'), 'HR');
+INSERT INTO worker values(002, 'Niharika', 'Verma', 80000, TO_DATE('2014-06-11 09:00:00', 'YYYY-MM-DD HH:MI:SS'), 'Admin');
+INSERT INTO worker values(003, 'Vishal', 'Singhal', 300000, to_date('2014-02-20 09:00:00', 'YYYY-MM-DD HH:MI:SS'), 'HR');
+INSERT INTO worker values(004, 'Amitabh', 'Singh', 500000, to_date('2014-02-20 09:00:00', 'YYYY-MM-DD HH:MI:SS'), 'Admin');
+INSERT INTO worker values(005, 'Vivek', 'Bhati', 500000, to_date('2014-06-11 09:00:00', 'YYYY-MM-DD HH:MI:SS'), 'Admin');
+INSERT INTO worker values(006, 'Vipul', 'Diwan', 200000, to_date('2014-06-11 09:00:00', 'YYYY-MM-DD HH:MI:SS'), 'Account');
+INSERT INTO worker values(007, 'Satish', 'Kumar', 75000, to_date('2014-01-20 09:00:00', 'YYYY-MM-DD HH:MI:SS'), 'Account');
+INSERT INTO worker values(007, 'Geetika', 'Chauhan', 90000, to_date('2014-04-11 09:00:00', 'YYYY-MM-DD HH:MI:SS'), 'Admin');
+----------------------------------------------------------------------------------------------------
+INSERT INTO bonus values(1, to_date('2016-02-20 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), 5000);
+INSERT INTO bonus values(2, to_date('2016-06-11 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), 3000);
+INSERT INTO bonus values(3, to_date('2016-02-20 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), 4000);
+INSERT INTO bonus values(4, to_date('2016-02-20 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), 4500);
+INSERT INTO bonus values(5, to_date('2016-06-11 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), 3500);
+----------------------------------------------------------------------------------------------------
+
