@@ -5,6 +5,7 @@
 *.d
 *.obj
 *.c~
+*.class
 *.swp
 .vscode
 inputs.txt
