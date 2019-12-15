@@ -2,14 +2,17 @@
 *.app
 *.exe
 *.o
+*.out
 *.d
 *.obj
 *.c~
 *.class
 *.swp
 .vscode
+sync.ffs_db
 inputs.txt
 test.c
 temp.c
 temp*
 test*
+sync*

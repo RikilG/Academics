@@ -1,0 +1,2 @@
+implement: ls -l | grep 2019 | wc -l
+// all files which are created in 2019 and have 2019 in them

@@ -1,5 +1,5 @@
 # Academics
----
+
 This repository contains all academic projects and assignments which i have done during my study at Birla Institute of Technology and Science, Pilani.
 This reposository contains division based on courses
 

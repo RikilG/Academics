@@ -1,0 +1,36 @@
+
+CPU CONTROL
+lscpu	- details of cpu
+cd /sys/devices/system/cpu - each folder for cpu core
+cd cpu1
+cat online
+sudo sh -c 'echo 0 > cpu1/online'
+	disable each cpu and run your threads program
+nproc	- check no of cpu's active
+
+
+SCHEDULING ON LINUX
+
+CFS - equally allocates time to all processes irrespective of its cpu usage. uses red black tree.
+
+Schedulers on linux
+SCHED_OTHER / SCHED_NORMAL
+SCHED_FIFO
+SCHED_RR
+SCHED_BATCH			- used for cpu intensive tasks	- like neural network training
+SCHED_IDLE			- for io intensive tasks - like word processing
+
+TOP COMMAND
+PR	- priority num
+Ni	- nice number ( -20 to 19)(most to least favorable)(man nice)
+	renice running process = sudo renice -n -20 -p <pid>
+	run process with custom nice = sudo nice -n -10 file.out
+	weight = (1024/1.25^nice)
+nice value is static, priority is dynamic
+	get scheduler and static pr = chrt -p 3179
+	chrt = change realtime
+	chrt -m = show min and max pr vaues for each scheduler
+
+CHANGE SCHEDULER
+
+sudo chrt -b -p 0 3179 = change sch to batch
